@@ -1,14 +1,16 @@
 "use client";
 import Link from 'next/link';
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
 
+  const router = useRouter()
   const [error, setError] = useState()
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check if either username or password is empty
@@ -16,7 +18,29 @@ const LoginForm = () => {
       setError('Please enter both a username and a password.');
     } else {
       setError('');
+      const res = await fetch('/api/login', {
+        method: "POST",
+        headers: {
+            "Content-type":"application/json"
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+       });
+  
+      const {msg} = await res.json()
+      console.log(msg)
+
+      if(msg == "username or password is incorrect") {
+        setError(msg)
+      }
+
+      else if(msg == 'Login successful!') {
+        router.push('/dashboard')
+      }
     }
+    
   };
 
   return (

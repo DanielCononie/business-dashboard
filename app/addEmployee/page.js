@@ -1,12 +1,12 @@
-import CreateForm from '@/components/CreateForm';
+import AddEmployee from '@/components/AddEmployee'
 import React from 'react'
 
-const Create = () => {
+const page = () => {
   return (
     <div className='flex justify-center items-center h-[100vh] bg-gray-800'>
-        <CreateForm />
+        <AddEmployee />
     </div>
   )
 }
 
-export default Create;
+export default page
