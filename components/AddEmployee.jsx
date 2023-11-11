@@ -5,7 +5,11 @@ import { useRouter } from 'next/navigation';
 const AddEmployee = () => {
 
     const router = useRouter();
-    const [employee, setEmployee] = useState({})
+    const [employee, setEmployee] = useState({first_name: '',
+    last_name: '',
+    job_title: 'Front-end engineer', // Set a default value
+    salary: 0, 
+    })
 
     async function handleSubmit(event) {
         event.preventDefault();
