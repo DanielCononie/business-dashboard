@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 const AddEmployee = () => {
 
+    const router = useRouter();
     const [employee, setEmployee] = useState({})
 
     async function handleSubmit(event) {
@@ -17,7 +19,7 @@ const AddEmployee = () => {
         });
 
         const {msg} = await res.json()
-        console.log(msg)
+        router.push('/dashboard');
     }
   return (
     <div className="w-1/2 mx-auto p-3">

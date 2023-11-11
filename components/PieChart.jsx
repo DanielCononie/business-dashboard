@@ -96,7 +96,7 @@ const PieChart = () => {
 
   return (
     <div className=''> 
-    <h1 className='items-center text-center mb-3 font-bold'>Each job title percentage</h1>
+    <h1 className='items-center text-sm text-center mb-3 font-bold'>Team makeup</h1>
         <Pie height={300} data={chartData} />
     </div>
   )

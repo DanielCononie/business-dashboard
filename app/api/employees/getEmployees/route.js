@@ -13,3 +13,17 @@ export async function GET(request) {
         console.log(error)
     }
 }
+
+export async function DELETE(request) {
+    try {
+        const {id} = await request.json();
+        await pool.query("DELETE FROM employees WHERE empid=$1", [id])
+        return NextResponse.json({
+            msg: ["Data deleted"]
+        })
+    } catch (error) {
+        return NextResponse.json({
+            msg: ["entry could not be deleted!"]
+        })
+    }
+}
