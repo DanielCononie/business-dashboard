@@ -74,7 +74,7 @@ const LoginForm = () => {
             Log in!
           </button>
           <div className='flex text-white mt-5'>
-            <p>Don't have an account?</p>
+            <p>Do not have an account?</p>
             <Link href='/createAccount' className='ml-11 font-bold hover:font-extrabold'>
               Register
             </Link>
