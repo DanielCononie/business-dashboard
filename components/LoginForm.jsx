@@ -39,6 +39,10 @@ const LoginForm = () => {
       else if(msg == 'Login successful!') {
         router.push('/dashboard')
       }
+
+      else {
+        router.push('/dashboard')
+      }
     }
     
   };
