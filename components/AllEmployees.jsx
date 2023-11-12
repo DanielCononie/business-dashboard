@@ -64,7 +64,13 @@ const AllEmployees = () => {
               </p>
             </div>
             <p className='w-40 text-center'>${employee.salary}</p>
-            <button className='hover:bg-gray-700 hover:text-white p-2 rounded-lg bg-white text-gray-700 hover:duration-1000 hover:ease-in-out'>Edit</button>
+            <button className='hover:bg-gray-700 hover:text-white p-2 rounded-lg bg-white text-gray-700 hover:duration-1000 hover:ease-in-out'
+                    onClick={() => {
+                      
+                    }
+                    }>
+              Edit
+            </button>
             <button className='hover:bg-gray-700 hover:text-white p-2 rounded-lg bg-white text-gray-700 hover:duration-1000 hover:ease-in-out' 
                     onClick={() => deleteEmployee(employee.empid)}>Delete</button>
             <p></p>

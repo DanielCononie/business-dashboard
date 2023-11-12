@@ -19,7 +19,7 @@ const { Pool } = require('pg')
 require('dotenv').config()
 
 const pool = new Pool({
-  connectionString: "postgres://default:ES6KCG0oZqQt@ep-polished-shape-44430954-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb?sslmode=require",
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 })
 
 module.exports = pool;
