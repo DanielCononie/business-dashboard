@@ -47,3 +47,22 @@ export async function GET(request) {
         console.log(error)
     }
 }
+
+export async function PUT(request) {
+
+    try {
+
+        const {id, first_name, last_name, job_title, salary } = await request.json();
+        const query = "UPDATE employees SET first_name = $1, last_name = $2, job_title = $3, salary = $4 WHERE empid = $5";
+        const values = [first_name, last_name, job_title, salary, id];
+
+        await pool.query(query, values)
+
+        return NextResponse.json({msg: ["Put success"]})
+    } catch (error) {
+         console.error(error)
+         return NextResponse.json({msg: ["Put failed"]})
+    }
+
+    
+}

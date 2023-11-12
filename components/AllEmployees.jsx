@@ -1,10 +1,15 @@
 "use client";
 import React, {useState, useEffect} from 'react'
+import EditEmployee from './EditEmployee';
 
 const AllEmployees = () => {
 
     const [employees, setEmployees] = useState([])
-    
+    const [edit, setEdit] = useState(false);
+
+    const handleEditClick = (index) => {
+      setEdit(index);
+    };
 
     useEffect(() => {
         async function getEmployees() {
@@ -46,34 +51,40 @@ const AllEmployees = () => {
         <h1 className='text-center font-bold text-lg'>Project Team</h1>
       <ul className='list-none '> 
         {employees.map((employee, index) => (
+          
           <li key={index} className='flex justify-between border-b py-3 '>
-            <p className='font-bold w-[160px]' > {employee.first_name} {employee.last_name}</p>
-            <div className='flex flex-col justify-center items-center text-center'>
-              <p className={`font-sans ${
-                          employee.job_title === 'Dev Ops'
-                          ? 'bg-yellow-500 w-40 items-center text-center ml-4 flex-shrink-0'
-                          : employee.job_title === 'Project manager'
-                          ? 'bg-green-500 w-40 items-center text-center ml-4 flex-shrink-0'
-                          : employee.job_title === 'Front-end engineer'
-                          ? 'bg-red-500 w-40 items-center text-center ml-4'
-                          : employee.job_title === 'Back-end engineer'
-                          ? 'bg-blue-500 w-40 items-center text-center ml-4'
-                          : 'bg-gray-500 w-40 items-center text-center ml-4' 
-                      } text-white py-1 px-2 rounded-full`}>
-                  {employee.job_title}
-              </p>
-            </div>
-            <p className='w-40 text-center'>${employee.salary}</p>
-            <button className='hover:bg-gray-700 hover:text-white p-2 rounded-lg bg-white text-gray-700 hover:duration-1000 hover:ease-in-out'
-                    onClick={() => {
-                      
-                    }
-                    }>
-              Edit
-            </button>
-            <button className='hover:bg-gray-700 hover:text-white p-2 rounded-lg bg-white text-gray-700 hover:duration-1000 hover:ease-in-out' 
-                    onClick={() => deleteEmployee(employee.empid)}>Delete</button>
-            <p></p>
+
+            {edit === index ? (
+              <EditEmployee employee={employee} setEdit={setEdit}/>
+            ) : (
+              <>
+                <p className='font-bold w-[160px]' > {employee.first_name} {employee.last_name}</p>
+                <div className='flex flex-col justify-center items-center text-center'>
+                  <p className={`font-sans ${
+                              employee.job_title === 'Dev Ops'
+                              ? 'bg-yellow-500 w-40 items-center text-center ml-4 flex-shrink-0'
+                              : employee.job_title === 'Project manager'
+                              ? 'bg-green-500 w-40 items-center text-center ml-4 flex-shrink-0'
+                              : employee.job_title === 'Front-end engineer'
+                              ? 'bg-red-500 w-40 items-center text-center ml-4'
+                              : employee.job_title === 'Back-end engineer'
+                              ? 'bg-blue-500 w-40 items-center text-center ml-4'
+                              : 'bg-gray-500 w-40 items-center text-center ml-4' 
+                          } text-white py-1 px-2 rounded-full`}>
+                      {employee.job_title}
+                  </p>
+                </div>
+                <p className='w-40 text-center'>${employee.salary}</p>
+                <button className='hover:bg-gray-700 hover:text-white p-2 rounded-lg bg-white text-gray-700 hover:duration-1000 hover:ease-in-out'
+                        onClick={() => handleEditClick(index)}>
+                  Edit
+                </button>
+                <button className='hover:bg-gray-700 hover:text-white p-2 rounded-lg bg-white text-gray-700 hover:duration-1000 hover:ease-in-out' 
+                        onClick={() => deleteEmployee(employee.empid)}>Delete</button>
+                <p></p>
+              </>
+            )}
+            
           </li>
         ))}
       </ul>
